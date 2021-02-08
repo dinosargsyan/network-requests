@@ -1,0 +1,22 @@
+@import "~styles/_root";
+
+.app-posts__post{
+   padding:24px;
+   border: 1px solid $primary-color;
+   margin-bottom: 10px;
+   &__title{
+      font-size: 24px;
+      font-weight: bold;
+      display: block;;
+   }
+   &__body{
+      font-size: 13px;
+   }
+}
+.app-posts__post:hover{
+   background-color: #ffee10;
+   box-shadow: 0 0 5px #ffee10;
+   text-shadow: 0 0 5px #ffee10;
+   transition: all .4s ease-in-out;
+   transform: scale(1.03);
+}
