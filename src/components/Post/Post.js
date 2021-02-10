@@ -11,13 +11,13 @@ const Post = ({post, className=''}) => {
         </div>
     )
 }
-post.PropTypes={
-    post: PropTypes.exact({
-        title: PropTypes.string.isRequired,
-        body: PropTypes.string.isRequired,
-        id: PropTypes.number,
-        userId: PropTypes.number
-    }),
-    className: PropTypes.string,
-}
+// Post.PropTypes={
+//     post: PropTypes.exact({
+//         title: PropTypes.string.isRequired,
+//         body: PropTypes.string.isRequired,
+//         id: PropTypes.number,
+//         userId: PropTypes.number
+//     }),
+//     className: PropTypes.string,
+// }
 export default Post;
