@@ -19,16 +19,27 @@ class Service{
              }
          })
    }
-   getAllPost = () =>{
+    getAllPost = () =>{
             return this._request('GET','/posts')
-                     }
-
+    }
     updatePost=(id,data) =>{
         return this._request('PATCH',`/posts/${id}`,data)
     } 
+    
     getFewPosts = (start,limit) =>{
-        return this._request('GET',`/posts?_start=${start}&_limit=${limit}`)
-    }                
+        return new Promise ((resolve,reject)=>{
+                setTimeout(()=>{
+            return resolve (this._request('GET',`/posts?_start=${start}&_limit=${limit}`))
+        },3000)
+        })
+    }  
+    deletePost = (id) => {
+        return this._request('DELETE', `/posts/${id}`)
+    }     
+    createPost = (data) => {
+        return this._request('POST', '/posts' ,data);
+    }       
+    
 }
 
 const service = new Service();

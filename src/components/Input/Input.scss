@@ -1,0 +1,13 @@
+.app-posts{
+    &__input{
+        border-radius: 5px;
+        border-color:brown;
+        width: 500px;
+        height: 60px;
+        outline: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+}

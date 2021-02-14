@@ -1,9 +1,13 @@
 @import "~styles/_root";
 
-.app-posts__post{
+.app-posts{
+   
+   &__post{
    padding:24px;
    border: 1px solid $primary-color;
    margin-bottom: 10px;
+   
+   
    &__title{
       font-size: 24px;
       font-weight: bold;
@@ -12,6 +16,7 @@
    &__body{
       font-size: 13px;
    }
+}
 }
 .app-posts__post:hover{
    background-color: #ffee10;
