@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { LoopCircleLoading } from 'react-loadingg';
+// import { LoopCircleLoading } from 'react-loadingg';
 
 import Post from 'components/Post/Post';
 
@@ -19,7 +19,7 @@ export class Posts extends Component {
             start: 0,
             title: "",
             body: "",
-            hasMore: true,
+            hasMore: false,
             loading: false
         }
     componentDidMount(){
@@ -44,7 +44,8 @@ export class Posts extends Component {
                 if(resJson.length !== 0)
                 resJson.sort((a,b) => b.id-a.id);
                 this.setState({
-                    posts: resJson
+                    posts: resJson,
+                    hasMore: true
               })
            })
         
@@ -152,7 +153,7 @@ export class Posts extends Component {
                 
             </div>
                    <div className="app-posts__getMore">
-  {this.state.loading ? <Loading /> : this.state.hasMore && <Button onClick={this.getMore}  className="app-posts__inputs__publish">Get More</Button> }
+  {this.state.loading ? <Input /> : this.state.hasMore && <Button onClick={this.getMore}  className="app-posts__inputs__publish">Get More</Button> }
                    </div>   
                    </>           
         )

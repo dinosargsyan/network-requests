@@ -1,6 +1,7 @@
 @import "~styles/_root";
 
 .app-header{
+    z-index: 1000;
     position: fixed;
     top:0;
     left:0;
@@ -11,4 +12,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+     &__nav__ul__li{
+         display: inline;
+         padding-left: 40px;
+       
+     }
+    }
+.selected{
+    color:white;
+    background-color: rgb(13, 5, 61);
+    border-radius: 5px;
+    padding: 4px;
+    justify-content: center;
+    
+}
+a{
+    text-decoration: none;
+    margin-right: 15px;
 }

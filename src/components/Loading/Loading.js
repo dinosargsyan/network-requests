@@ -1,6 +1,6 @@
-import React from 'react';
+// import React from 'react';
 
-import { TransverseLoading } from 'react-loadingg';
+// import { TransverseLoading } from 'react-loadingg';
 
-const Loading = () => <TransverseLoading />;
-export default Loading;
+// const Loading = () => <TransverseLoading />;
+// export default Loading;
