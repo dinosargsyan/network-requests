@@ -145,9 +145,9 @@ export class Posts extends Component {
                         key={post.id}
                         post={post}
                         className="app-posts__post"
+                        isLink
                         />
                         )
-                       
                     })
                    }
                 

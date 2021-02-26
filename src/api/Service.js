@@ -33,6 +33,9 @@ class Service{
         },3000)
         })
     }  
+    getPost = (id) =>{
+        return this._request('GET',`/posts/${id}`);
+    }
     deletePost = (id) => {
         return this._request('DELETE', `/posts/${id}`)
     }     
