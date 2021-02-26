@@ -5,7 +5,7 @@ import './Header.scss';
 
 const Header = () => {
     return (
-        <BrowserRouter>
+       
         <div className="app-header">
             <nav className="app-header__nav">
                 <ul className="app-header__nav__ul">
@@ -15,7 +15,7 @@ const Header = () => {
                 </ul>
             </nav>       
         </div>
-        </BrowserRouter>
+        
     )
 }
 
