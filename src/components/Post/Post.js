@@ -6,7 +6,7 @@ import './Post.scss';
 import PostDetails from 'components/PostDetails/PostDetails';
 import Link from "components/Link/Link";
 
-const Post = ({post, className, isLink=false}) => {
+const Post = ({post, className, isLink=false, edit=()=>{}}) => {
     const Wrapper = ({children}) =>{
         const postclassName = `app-posts${className}`
             return isLink ?(
@@ -18,6 +18,7 @@ const Post = ({post, className, isLink=false}) => {
                         </div>
             ):(
                 <div className={postclassName}>
+                   <Button variant="contained" color="secondary" onClick={edit}>Edit</Button> 
                 {children}
                 {console.log("this is not link")}
             </div>
@@ -38,7 +39,8 @@ const Post = ({post, className, isLink=false}) => {
 //         title: PropTypes.string.isRequired,
 //         body: PropTypes.string.isRequired,
 //         id: PropTypes.number,
-//         userId: PropTypes.number
+//         userId: PropTypes.number,
+//            edit: PropTypes.func,
 //     }),
 //     className: PropTypes.string,
 // }

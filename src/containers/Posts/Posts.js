@@ -10,49 +10,33 @@ import Input from 'components/Input/Input';
 import Loading from 'components/Loading/Loading';
 
 import "./Posts.scss";
+import fbService from 'api/fbService';
 
 const limit = 5;
 export class Posts extends Component {
 
         state = {
             posts: [],
-            start: 0,
+            startAt: 0,
             title: "",
             body: "",
             hasMore: false,
             loading: false
         }
     componentDidMount(){
-    //  getAllPosts()
-    //   .then(resJson=>{
-    //       this.setState({
-    //           posts: resJson
-    //       })
-    //   })
-        //  service.getAllPost()
-        //  .then(resJson=>{
-            
-        //      resJson.sort((a,b) => b.id-a.id);
-        //      this.setState({
-        //          posts: resJson
-        //    })
-
-        //       })
+   
         
-            service.getFewPosts(this.state.start,limit)
+        
+            fbService.getPosts()
             .then(resJson=>{
                 if(resJson.length !== 0)
-                resJson.sort((a,b) => b.id-a.id);
                 this.setState({
                     posts: resJson,
                     hasMore: true
               })
            })
         
-           .catch(
-              //alert("error")
-    
-           )
+           
         
         
 
@@ -97,18 +81,17 @@ export class Posts extends Component {
         })
     }
     getMore=()=>{
-        const newStart= this.state.start + limit;
+        const newStartAt = this.state.startAt + limit + 1;
         this.setState({
-            start: newStart,
+            startAt: newStartAt,
             loading: true
         })
-        service.getFewPosts(newStart,limit)
+        fbService.getPosts(newStartAt , newStartAt + limit)
         .then(data=>{
-            
-            data.sort((a,b) => b.id-a.id);
+            console.log(data);
             this.setState({
                 posts: [ ...this.state.posts, ...data],
-                hasMore: data.length <5 ? false : true,
+                hasMore: data.length <limit ? false : true,
                 loading: false
             })
         })
@@ -142,10 +125,10 @@ export class Posts extends Component {
                     this.state.posts.map(post =>{
                         return (
                         <Post 
-                        key={post.id}
-                        post={post}
-                        className="app-posts__post"
-                        isLink
+                           key={post.id}
+                           post={post}
+                           className="app-posts__post"
+                           isLink
                         />
                         )
                     })
