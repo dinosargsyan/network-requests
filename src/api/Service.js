@@ -30,7 +30,7 @@ class Service{
         return new Promise ((resolve,reject)=>{
                 setTimeout(()=>{
             return resolve (this._request('GET',`/posts?_start=${start}&_limit=${limit}`))
-        },3000)
+        },1000)
         })
     }  
     getPost = (id) =>{
