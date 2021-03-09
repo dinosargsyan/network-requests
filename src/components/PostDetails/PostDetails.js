@@ -14,7 +14,8 @@ export class PostDetails extends Component {
         this.state = {
             post: null,
             isOpenEditPopUp: false,
-            titleValue: ''
+            titleValue: '',
+            bodyValue: ''
         }
     }
     componentDidMount() {
@@ -22,7 +23,8 @@ export class PostDetails extends Component {
             .then(data => {
                 this.setState({
                     post: data,
-                    titleValue: data.title
+                    titleValue: data.title,
+                    bodyValue: data.body
                 })
             })
     }
@@ -34,25 +36,26 @@ export class PostDetails extends Component {
         console.log(this.state.isOpenEditPopUp)
     }
 
-    onChangeTitle = (e) =>{
+    onChangeValue = (name, value) =>{
         this.setState({
-            titleValue: e.target.value
+            [name]: value 
         })
     }
 
     savePost = () =>{
         fbService.updatePost(this.state.post.id,{
             ...this.state.post,
-            title: this.state.titleValue
+            title: this.state.titleValue,
+            body: this.state.bodyValue
         }).then(res=>{this.setState({
-            post:{...this.state.post, title: this.state.titleValue},
+            post:{...this.state.post, title: this.state.titleValue, body: this.state.bodyValue},
             isOpenEditPopUp:false
         })
     })
     }
 
     render() {
-        const { post, isOpenEditPopUp, titleValue } = this.state;
+        const { post, isOpenEditPopUp, titleValue,bodyValue } = this.state;
         if (!post) {
             return <span>Loading...</span>
         }
@@ -66,7 +69,8 @@ export class PostDetails extends Component {
                     className="app-post__post-details__modal"
                 >
                     <div className="app-post__post-details__modal__inner">
-                     <input value={titleValue}  onChange={this.onChangeTitle}/>     
+                     <input value={titleValue}  onChange={(e)=>this.onChangeValue('titleValue', e.target.value)}/>     
+                     <input value={bodyValue}  onChange={(e)=>this.onChangeValue('bodyValue', e.target.value)}/>     
                      <Button variant="contained" color="primary" onClick={this.savePost}> Save </Button>
                     </div>
                 </Modal>
