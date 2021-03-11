@@ -58,20 +58,19 @@ export class Posts extends Component {
     }
     
     deletePosts = (id) => {
-        service.deletePost(id) 
+        fbService.deletePost(id) 
         .then(() =>{
             this.setState({
-            posts:  this.state.posts.filter((el =>{
+            posts:  this.state.posts.filter((el) =>{
               return  el.id !== id;
-            }))
+            })
           })
         })
     }
     createPost = () =>{
-        service.createPost({
+        fbService.createPost({
             title: this.state.title,
             body: this.state.body,
-            userId: 1
         })
         .then(data=>{
            // data.sort((a,b) => b.id-a.id);
@@ -97,16 +96,12 @@ export class Posts extends Component {
         })
     }
     
-    getTitleInputValue = (event) =>{
+    getInputValue = (name, value) =>{
         this.setState({
-            title: event.target.value
+            [name]: value
         })
     }
-    getBodyInputValue = (event) =>{
-        this.setState({
-            body: event.target.value
-        })
-    }
+    
 
     render() {
         return (
@@ -117,8 +112,8 @@ export class Posts extends Component {
                 {/* <Button onClick={this.updatePosts} > Update Post</Button>
                 <Button onClick = {this.deletePosts }> Delete Post</Button> */}
                 {/* <Loading /> */}
-                <Input onChange={this.getTitleInputValue} value={this.state.title} className="app-posts__input" placeholder="Title" />
-                <Input onChange={this.getBodyInputValue} value={this.state.body} className="app-posts__input" placeholder="Text" />
+                <Input onChange={(e)=>this.getInputValue('title', e.target.value)} value={this.state.title} className="app-posts__input" placeholder="Title" />
+                <Input onChange={(e)=>this.getInputValue('body', e.target.value)} value={this.state.body} className="app-posts__input" placeholder="Text" />
                 <Button onClick={this.createPost} className="app-posts__inputs__publish">Publish</Button>
                 </div>
                 {
@@ -129,6 +124,7 @@ export class Posts extends Component {
                            post={post}
                            className="app-posts__post"
                            isLink
+                           remove={()=>this.deletePosts(post.id)}
                         />
                         )
                     })

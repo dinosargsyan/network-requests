@@ -4,6 +4,7 @@ import Post from 'components/Post/Post';
 import fbService from 'api/fbService';
 
 import './PostDetails.scss'
+import Input from 'components/Input/Input';
 
 export class PostDetails extends Component {
     constructor(props) {
@@ -69,8 +70,8 @@ export class PostDetails extends Component {
                     className="app-post__post-details__modal"
                 >
                     <div className="app-post__post-details__modal__inner">
-                     <input value={titleValue}  onChange={(e)=>this.onChangeValue('titleValue', e.target.value)}/>     
-                     <input value={bodyValue}  onChange={(e)=>this.onChangeValue('bodyValue', e.target.value)}/>     
+                     <Input value={titleValue}  onChange={(e)=>this.onChangeValue('titleValue', e.target.value)}/>     
+                     <Input value={bodyValue}  onChange={(e)=>this.onChangeValue('bodyValue', e.target.value)}/>     
                      <Button variant="contained" color="primary" onClick={this.savePost}> Save </Button>
                     </div>
                 </Modal>

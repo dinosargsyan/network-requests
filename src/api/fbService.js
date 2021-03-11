@@ -34,8 +34,29 @@ class FbService {
         }
 
         updatePost = async(id, data) => {
-          const res = await firebase.database().ref(`posts/${id}`).set(data);
+          const res = await firebase.database().ref(`posts/${id}`).update(data);
           
+        }
+
+        deletePost = async(id) =>{
+            const res = await firebase.database().ref(`posts/${id}`).remove();
+        }
+
+        createPost =  async (postData) =>{
+            const res = await firebase.database().ref('posts').orderByKey().limitToLast(1).get();
+            const lastItem = res.val();
+            const { id } = lastItem;
+
+            const newItem ={
+                ...postData,
+                id: id+1,
+                userId: id+1
+            }
+
+            await firebase.database().ref(`posts/${id + 1}`).set(newItem);
+
+            return newItem;
+
         }
 
 }

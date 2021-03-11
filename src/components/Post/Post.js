@@ -6,13 +6,19 @@ import './Post.scss';
 import PostDetails from 'components/PostDetails/PostDetails';
 import Link from "components/Link/Link";
 
-const Post = ({post, className, isLink=false, edit=()=>{}}) => {
+const Post = ({post, className, isLink=false, edit=()=>{}, remove=()=>{
+
+}}) => {
+    const removeHandler = (e) =>{
+            e.preventDefault();
+            remove();
+    }
     const Wrapper = ({children}) =>{
         const postclassName = `app-posts${className}`
             return isLink ?(
                         <div className={className}>
                 <Link className={postclassName} to={`/posts/${post.id}`}>
-                    <Button className="app-posts__button" variant="contained" color="primary">Remove</Button>
+                    <Button className="app-posts__button" variant="contained" color="primary" onClick={removeHandler}>Remove</Button>
                     {children}
                 </Link>
                         </div>
