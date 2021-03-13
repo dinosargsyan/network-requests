@@ -16,7 +16,8 @@ class FbService {
         }
         getAllPost = async () =>{
             const res = await firebase.database().ref('posts').get();
-            return res.val();
+            const data = res.toJSON();
+            return Object.values(data);
         }
         getPosts = async (startAt = 0, endAt = 5) => {
             const res = await firebase.database().ref('posts')
@@ -40,11 +41,21 @@ class FbService {
 
         deletePost = async(id) =>{
             const res = await firebase.database().ref(`posts/${id}`).remove();
+            const posts = await this.getAllPost();
+
+            await firebase.database().ref('posts')
+            .set(posts.map((el,index)=>{
+                return {
+                    ...el,
+                    id: index
+                }
+            }))
         }
 
         createPost =  async (postData) =>{
             const res = await firebase.database().ref('posts').orderByKey().limitToLast(1).get();
-            const lastItem = res.val();
+            const lastItemJson = res.toJSON();
+            const lastItem = Object.values(lastItemJson)[0];
             const { id } = lastItem;
 
             const newItem ={
