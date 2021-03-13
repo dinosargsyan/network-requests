@@ -24,8 +24,9 @@
      }
     }
 .selected{
-    color:white;
-    background-color: rgb(13, 5, 61);
+    .app-header__nav__ul__li{
+        color: rgba(212, 0, 11, 0.959);
+    }
     border-radius: 5px;
     padding: 4px;
     justify-content: center;

@@ -6,6 +6,7 @@ import HomePage from 'components/HomePage/HomePage';
 import PostDetails from 'components/PostDetails/PostDetails';
 import Error404 from 'utils/Error404';
 import './App.css';
+import Auth from 'containers/Auth/Auth';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
          <Route exact path= "/posts" component={Posts} />
          <Route exact path="/posts/:postId" component={PostDetails}/>
          <Route exact path="/" component={HomePage} />
+         <Route exact path="/auth" component={Auth} />
          <Route component={Error404} />
          </Switch>
        </Layout>
