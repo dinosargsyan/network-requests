@@ -8,9 +8,9 @@ import service from 'api/Service';
 import Button from 'components/Button/Button';
 import Input from 'components/Input/Input';
 import Loading from 'components/Loading/Loading';
+import fbService from 'api/fbService';
 
 import "./Posts.scss";
-import fbService from 'api/fbService';
 
 const limit = 5;
 export class Posts extends Component {

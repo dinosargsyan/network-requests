@@ -1,3 +1,4 @@
+import { Component,createContext } from 'react';
 import Header from 'components/Header/Header';
 import Layout from 'components/Layout/Layout';
 import Posts from 'containers/Posts/Posts';
@@ -7,10 +8,17 @@ import PostDetails from 'components/PostDetails/PostDetails';
 import Error404 from 'utils/Error404';
 import './App.css';
 import Auth from 'containers/Auth/Auth';
+import AppContextProvider from 'context/AppContextProvider';
 
-function App() {
+
+ export class App extends Component{
+   
+
+  render(){
   return (
     <div>
+      <AppContextProvider>
+      
       <BrowserRouter>
       <Header/>
        <Layout>
@@ -23,8 +31,10 @@ function App() {
          </Switch>
        </Layout>
        </BrowserRouter>
+       </AppContextProvider>
     </div>
   );
+}
 }
 
 export default App;

@@ -74,11 +74,10 @@ class FbService {
     }
     signup = async (credentials) =>{
        const res = await firebase.auth().createUserWithEmailAndPassword(credentials.email,credentials.password);
-       console.log(res);
+       return this.fromResToUser(res);
     }
     login = async (credentials) =>{
         const res = await firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password);
-        console.log(res);
         return this.fromResToUser(res);
     }
 }

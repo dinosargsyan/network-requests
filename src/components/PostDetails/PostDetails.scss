@@ -6,6 +6,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
+       input{
+           padding: 5px;
+       }
         &__inner{
             display: flex;
             flex-direction: column;
