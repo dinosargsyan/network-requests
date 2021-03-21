@@ -9,6 +9,7 @@ import Error404 from 'utils/Error404';
 import './App.css';
 import Auth from 'containers/Auth/Auth';
 import AppContextProvider from 'context/AppContextProvider';
+import Profile from 'containers/Auth/Profile/Profile';
 
 
  export class App extends Component{
@@ -27,6 +28,7 @@ import AppContextProvider from 'context/AppContextProvider';
          <Route exact path="/posts/:postId" component={PostDetails}/>
          <Route exact path="/" component={HomePage} />
          <Route exact path="/auth" component={Auth} />
+         <Route exact path="/profile" component={Profile} />
          <Route component={Error404} />
          </Switch>
        </Layout>

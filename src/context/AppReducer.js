@@ -1,4 +1,4 @@
-import { actionTypes } from "./contextTypes"
+import {actionTypes } from "./contextTypes"
 
 export const appReducer = (state, action) => {
     switch (action.type) {
@@ -6,6 +6,16 @@ export const appReducer = (state, action) => {
             return {
                 ...state,
                 user: action.payload.user
+            }
+        case actionTypes.REMOVE_USER:
+            return {
+                ...state,
+                user: null
+            }
+        case actionTypes.SET_POSTS:
+            return {
+                ...state,
+                posts: action.payload.posts
             }
             default:
                 return state
