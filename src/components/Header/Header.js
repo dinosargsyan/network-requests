@@ -17,8 +17,8 @@ const Header = () => {
             to: "/posts"
         },
         {
-            title: "Users",
-            to: "/users"
+            title: "ToDos",
+            to: "/todos"
         }
     ];
     return (

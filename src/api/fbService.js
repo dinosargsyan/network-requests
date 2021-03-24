@@ -13,7 +13,12 @@ class FbService {
 
     }
     initializePosts = () => {
-        firebase.database().ref('posts').set(postMockup);
+        firebase.database().ref('todos').set(postMockup);
+    }
+    getAllTodos = async() =>{
+        const res = await firebase.database().ref('todos').get();
+        const data = res.toJSON();
+        return Object.values(data);
     }
     getAllPost = async () => {
         const res = await firebase.database().ref('posts').get();
@@ -29,19 +34,49 @@ class FbService {
         const data = res.toJSON();
         return Object.values(data);
     }
+    getTodos = async (startAt = 0, endAt = 5) => {
+        const res = await firebase.database().ref('todos')
+            .orderByKey()
+            .startAt(startAt.toString())
+            .endAt(endAt.toString())
+            .get();
+        const data = res.toJSON();
+        return Object.values(data);
+    }
 
     getPost = async (id) => {
         const res = await firebase.database().ref(`posts/${id}`).get();
         return res.val();
     }
+    getTodo = async (id) => {
+        const res = await firebase.database().ref(`todos/${id}`).get();
+        return res.val();
+    }
+
 
     updatePost = async (id, data) => {
         const res = await firebase.database().ref(`posts/${id}`).update(data);
 
     }
+    updateTodo = async (id, data) => {
+        const res = await firebase.database().ref(`todos/${id}`).update(data);
+
+    }
 
     deletePost = async (id) => {
         const res = await firebase.database().ref(`posts/${id}`).remove();
+        const posts = await this.getAllPost();
+
+        await firebase.database().ref('posts')
+            .set(posts.map((el, index) => {
+                return {
+                    ...el,
+                    id: index
+                }
+            }))
+    }
+    deleteTodo = async (id) => {
+        const res = await firebase.database().ref(`todos/${id}`).remove();
         const posts = await this.getAllPost();
 
         await firebase.database().ref('posts')
@@ -61,6 +96,21 @@ class FbService {
 
         const newItem = {
             ...postData,
+            id: id + 1,
+            userId: id + 1
+        }
+        await firebase.database().ref(`posts/${id + 1}`).set(newItem);
+        return newItem;
+
+    }
+    createTodo = async (TodoData) => {
+        const res = await firebase.database().ref('todos').orderByKey().limitToLast(1).get();
+        const lastItemJson = res.toJSON();
+        const lastItem = Object.values(lastItemJson)[0];
+        const { id } = lastItem;
+
+        const newItem = {
+            ...TodoData,
             id: id + 1,
             userId: id + 1
         }
@@ -88,6 +138,7 @@ class FbService {
     logout = async()=>{
         await firebase.auth().signOut();
     }
+
 }
 
 const fbService = new FbService();

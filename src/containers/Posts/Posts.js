@@ -34,8 +34,9 @@ export class Posts extends Component {
                 this.setState({
                     posts: resJson,
                     hasMore: true
-              })
-           })
+                })
+            })
+           
         
            
         

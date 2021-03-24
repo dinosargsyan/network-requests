@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import Input from 'components/Input/Input';
@@ -8,6 +8,7 @@ import './Signup.scss';
 import { actionTypes } from 'context/contextTypes';
 
 const Signup = () => {
+    const nameInputRef = useRef();
     const history = useHistory();
     const context = useContext(AppContext);
     const [credentials, setCredentials] = useState({
@@ -15,6 +16,12 @@ const Signup = () => {
         password: '',
         displayName: ''
     })
+    useEffect(()=>{
+        if(nameInputRef.current){
+
+            nameInputRef.current.focus();
+        }
+    },[])
     const changeHandler = (name, value) => {
         setCredentials({
             ...credentials,
@@ -42,6 +49,7 @@ const Signup = () => {
                 className="app-auth-signup__input"
                 placeholder="Username"
                 onChange={(e) => changeHandler('displayName', e.target.value)}
+                inputRef={nameInputRef}
             />
             <Input
                 value={credentials.email}

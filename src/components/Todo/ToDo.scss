@@ -1,0 +1,32 @@
+@import "~styles/_root";
+
+.app-todos{
+   
+   &__todo{
+   padding:24px;
+   border: 1px solid $primary-color;
+   margin-bottom: 10px;
+   border-radius: 3px;
+   
+   &__title{
+      font-size: 24px;
+      font-weight: bold;
+      display: block;;
+   }
+
+}
+.app-todos__button{
+ float: right;
+}
+a{
+   text-decoration: none;
+   color:unset;
+}
+}
+.app-todos__todo:hover{
+   background-color: #ee38c7;
+   box-shadow: 0 0 5px #cecece;
+   transition: all .4s ease-in-out;
+   transform: scale(1.03);
+   border-radius: 5px;
+}
