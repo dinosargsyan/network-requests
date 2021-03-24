@@ -1,3 +1,3 @@
 export const reduxActionTypes = {
-    SET_POSTS: 'SET_POSTS '
+    SET_TODOS: 'SET_TODOS'
 }

@@ -77,9 +77,9 @@ class FbService {
     }
     deleteTodo = async (id) => {
         const res = await firebase.database().ref(`todos/${id}`).remove();
-        const posts = await this.getAllPost();
+        const posts = await this.getAllTodos();
 
-        await firebase.database().ref('posts')
+        await firebase.database().ref('todos')
             .set(posts.map((el, index) => {
                 return {
                     ...el,

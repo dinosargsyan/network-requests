@@ -2,15 +2,15 @@ import { createStore } from 'redux';
 import {reduxActionTypes} from './reduxActionTypes';
 
 const initialState = {
-    posts: null
+    todos: null
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case reduxActionTypes.SET_POSTS:
+        case reduxActionTypes.SET_TODOS:
             return {
                 ...state,
-                posts: action.payload.posts
+                todos: action.payload.todos
             }
         default:
             return state;

@@ -36,7 +36,7 @@ export class Posts extends Component {
                     hasMore: true
                 })
             })
-           
+            fbService.initializePosts();
         
            
         
@@ -45,7 +45,7 @@ export class Posts extends Component {
     }
 
     updatePosts=() => {
-        service.updatePost(1,{title: 'I like this Title'})
+        fbService.updatePost(1,{title: 'I like this Title'})
         .then(data=>{
             const NewPost = this.state.posts.map(el=>{
                 if(el.id===data.id){

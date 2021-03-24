@@ -15,6 +15,7 @@ import Profile from 'containers/Auth/Profile/Profile';
 import { store } from 'reducers';
 
 import './App.css';
+import Todos from 'containers/Todos/Todos';
 
 
 export class App extends Component {
@@ -31,7 +32,7 @@ export class App extends Component {
                 <Switch>
                   <Route exact path="/posts" component={Posts} />
                   <Route exact path="/posts/:postId" component={PostDetails} />
-                  <Route exact path="/todos" component={Posts} />
+                  <Route exact path="/todos" component={Todos} />
                   <Route exact path="/todos/:todoId" component={TodoDetails} />
                   <Route exact path="/" component={HomePage} />
                   <Route exact path="/auth" component={Auth} />
