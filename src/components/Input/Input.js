@@ -8,7 +8,8 @@ const Input = ({
     onChange,
     className='app-input',
     loading= false,
-    placeholder=''
+    placeholder='',
+    inputRef,
     }) => {
     return (
         <div>
@@ -19,6 +20,7 @@ const Input = ({
              placeholder={placeholder} 
              className={className}
              disabled={loading}
+             ref={inputRef}
              />
         </div>
     )

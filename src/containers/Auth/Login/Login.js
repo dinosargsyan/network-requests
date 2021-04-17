@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import Input from 'components/Input/Input';
@@ -10,12 +10,19 @@ import { actionTypes } from 'context/contextTypes';
 import './Login.scss';
 
 const Login = () => {
+    const nameInputRef = useRef();
     const history = useHistory();
     const context = useContext(AppContext);
     const [credentials, setCredentials] = useState({
         email: '',
         password: ''
     })
+    useEffect(() => {
+        if (nameInputRef.current) {
+
+            nameInputRef.current.focus();
+        }
+    }, [])
     const changeHandler = (name, value) => {
         setCredentials({
             ...credentials,
@@ -36,8 +43,9 @@ const Login = () => {
                 value={credentials.email}
                 className="app-auth-login__input"
                 placeholder="Email"
-                onChange={(e) => changeHandler('email', e.target.value)
-                } />
+                onChange={(e) => changeHandler('email', e.target.value)}
+                inputRef={nameInputRef}
+            />
             <Input
                 value={credentials.password}
                 className="app-auth-login__input"

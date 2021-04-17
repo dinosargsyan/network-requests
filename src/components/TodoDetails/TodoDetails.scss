@@ -1,0 +1,20 @@
+.app-todo__todo-details{
+    margin: 20px 0;
+    border: 1px solid #f50057;
+    border-radius: 5px;
+    &__modal{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+       input{
+           padding: 5px;
+       }
+        &__inner{
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+            height:400px;
+            background-color:rgb(201, 199, 202);
+        }
+    }
+}
